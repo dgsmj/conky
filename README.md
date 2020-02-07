@@ -4,6 +4,8 @@ Programa para monitoramento do seu desktop.
 
 ## Instalação
 
+Para Ubuntu e derivados:
+
 ```
 sudo apt install -y conky
 ```
