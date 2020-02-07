@@ -1,0 +1,83 @@
+conky.config={
+
+    --gap_x = 10,
+    --gap_y = 40,
+   	alignment = 'middle_right',
+
+    cpu_avg_samples = 4,
+
+    --use_spacer = 'left',
+    --pad_percents = 3,
+    background = false,
+    double_buffer = true,
+    font = 'DejaVu Sans Mono:size=8',
+    use_xft = true,
+    
+
+    maximum_height = 300,
+    maximum_width = 300,
+    own_window_argb_visual = true,
+    own_window_argb_value = 30,
+    own_window_type = 'dock',
+    own_window = true,
+    own_window_hints = 'undecorated,below,skip_taskbar,skip_pager,sticky',
+    update_interval = 2.0,
+
+}
+
+conky.text = [[
+Distro ${alignr}${exec lsb_release -d -s}
+Kernel ${alignr}$kernel
+#Hostname ${alignr}${nodename}
+CPU ${alignr} ${freq_g} GHz
+Uptime ${alignr}$uptime
+
+#Process ${alignr}$processes
+#Running ${alignr}($running_processes)
+#${color orange}CPU: ${color} ${freq_g} GHz
+${cpugraph 60 07CC0D FF0000 -t}
+${color}CPU 1 ${alignr}${color1} ${cpu cpu1}% ${cpubar cpu1 12,150}
+${color}CPU 2 ${alignr}${color1} ${cpu cpu2}% ${cpubar cpu2 12,150}
+${color}CPU 3 ${alignr}${color1} ${cpu cpu3}% ${cpubar cpu3 12,150}
+${color}CPU 4 ${alignr}${color1} ${cpu cpu4}% ${cpubar cpu4 12,150 07CC0D FF0000 -t}
+
+$hr
+
+RAM${alignr}${membar 12, 150}
+$mem / $memmax ${alignr}$memeasyfree
+
+/${alignr}${fs_bar 12,150 /}
+${fs_used /} / ${fs_size /} ${alignr}${fs_free /}
+
+$hr
+
+#${color}RAM Usage:$color $mem${color 0077ff}/${color}$memmax - $memperc% ${color 0077ff}$membar
+#$hr
+#Gateway: ${alignr}${gw_ip}
+IP local: ${alignr}${if_up wlp3s0}${addr enp3s0}
+IP externo: ${alignr}${execi 60 curl  ipinfo.io/ip}
+#${downspeedgraph enp3s0 07CC0D FF0000 -t}
+#D ${totaldown enp3s0} ${alignr}${color}${downspeed enp3s0}
+#${upspeedgraph enp3s0 07CC0D FF0000 -t}
+#U ${totalup enp3s0} ${alignr}${upspeed enp3s0}
+
+${font DejaVu Sans Mono:size=8}${color1}WiFi Net Down:${color} ${downspeed wlp7s0}         	${goto 160}${color1}Net Up:${color} ${upspeed wlp7s0}$font
+${color1}${downspeedgraph wlp7s0 60,140 07CC0D FF0000 -t}${color1} 		                    ${goto 160}${upspeedgraph wlp7s0 60,140 07CC0D FF0000 -t}
+${font DejaVu Sans Mono:size=8}${color1}LAN Net Down:${color} ${downspeed enp3s0}          	${goto 160}${color1}Net Up:${color} ${upspeed enp3s0}$font
+${color1}${downspeedgraph enp3s0 60,140 07CC0D FF0000 -t}${color1} 		                    ${goto 160}${upspeedgraph enp3s0 60,140 07CC0D FF0000 -t}
+
+CPU $alignr CPU%  MEM%
+${color 999}${top name 1}$alignr${top cpu 1}${top mem 1}${color}
+${color 666}${top name 2}$alignr${top cpu 2}${top mem 2}${color}
+${color 333}${top name 3}$alignr${top cpu 3}${top mem 3}${color}
+${color 222}${top name 4}$alignr${top cpu 4}${top mem 4}${color}
+${color 111}${top name 5}$alignr${top cpu 5}${top mem 5}${color}
+
+MEM $alignr CPU%  MEM%
+${color 999}${top_mem name 1}$alignr${top_mem cpu 1}${top_mem mem 1}${color}
+${color 666}${top_mem name 2}$alignr${top_mem cpu 2}${top_mem mem 2}${color}
+${color 333}${top_mem name 3}$alignr${top_mem cpu 3}${top_mem mem 3}${color}
+${color 222}${top_mem name 4}$alignr${top_mem cpu 4}${top_mem mem 4}${color}
+${color 111}${top_mem name 5}$alignr${top_mem cpu 5}${top_mem mem 5}${color}
+
+]]
